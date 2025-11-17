@@ -1,0 +1,30 @@
+---
+- name: Deploy Hospital Management System using Ansible
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+        update_cache: yes
+
+    - name: Build frontend image
+      docker_image:
+        name: hms-frontend
+        build:
+          path: .
+          dockerfile: frontend.Dockerfile
+
+    - name: Build backend image
+      docker_image:
+        name: hms-backend
+        build:
+          path: .
+          dockerfile: backend.Dockerfile
+
+    - name: Run frontend container
+      docker_container:
+        name: frontend
+        im
