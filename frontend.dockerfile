@@ -10,6 +10,3 @@ RUN git clone https://tinyurl.com/hospitalbackend backend
 WORKDIR /app/backend
 RUN pip install -r requirements.txt
 CMD ["python3", "app.py"]
-  File name: inventory.ini
-    [all]
-localhost ansible_connection=local
